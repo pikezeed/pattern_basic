@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div>TODO write content 1</div>
+        <div>test</div>
+        <h2>a = </h2>
+    </body>
+    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script>
+        (function(jQuery){
+            jQuery.fn.helloWorld = function( options ){
+                
+                var settings = jQuery.extend({
+                   text : 'Hello World2',
+                   color : null,
+                   
+                }, options);
+                
+                this.filter('h2').append(function(){
+                    return "= Test Div";
+                    
+                }); // auto load
+                
+                return this.each(function() {
+                    jQuery('div').text("Hello World");
+                });
+                
+                return this;
+                
+                
+            }
+        }(jQuery));
+    </script>
+    <script>
+        $(document).ready( function() {
+            $('h2').helloWorld();
+        });
+        
+    </script>
+</html>
