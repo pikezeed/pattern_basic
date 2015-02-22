@@ -11,74 +11,28 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width">
     </head>
     <body>
-
+        <div>TODO write content 1</div>
         <div>test</div>
         <h2>a = </h2>
-        
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
     </body>
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
     <script>
-        ;(function(jQuery){
-            jQuery.fn.slider = function( options ){
+        (function(jQuery){
+            jQuery.fn.helloWorld = function( options ){
                 
-                var defaults = {
-                  text: 'Hell World defaults'  
-                };
+                var settings = jQuery.extend({
+                   text : 'Hello World2',
+                   color : null,
+                   
+                }, options);
                 
+                this.filter('h2').append(function(){
+                    return "= Test Div";
+                    
+                }); // auto load
                 
-                var settings = jQuery.extend({}, defaults, options);
-                
-
-                
-                
-                 
-                // using method each
                 return this.each(function() {
-                    var self = this;
-                    var _init = (function(){
-                        
-                        
-                        
-                    })();
-//                    var retinaMacbook = (function() {
-// 
-//                        //Private variables
-//                        var RAM, addRAM;
-//
-//                        RAM = 4;
-//
-//                        //Private method
-//                        addRAM = function (additionalRAM) {
-//                            RAM += additionalRAM;
-//                        };
-//
-//                        return {
-//
-//                            //Public variables and methods
-//                            USB: undefined,
-//                            insertUSB: function (device) {
-//                                this.USB = device;
-//                                console.log("test 1");
-//                            },
-//
-//                            removeUSB: function () {
-//                                var device = this.USB;
-//                                this.USB = undefined;
-//                                return device;
-//                            }
-//                        };
-//                    })();
-                    
-                    
-                    
-
-
-                    
+                    jQuery('div').text("Hello World");
                 });
                 
                 return this;
@@ -89,7 +43,7 @@ and open the template in the editor.
     </script>
     <script>
         $(document).ready( function() {
-              jQuery('div').slider({});   
+            $('h2').helloWorld();
         });
         
     </script>
