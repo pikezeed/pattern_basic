@@ -10,36 +10,56 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <style>
+     
             .slider{
-                overflow: auto;
-                min-width: 800px;
+                width: 800px;
                 height: 400px;
                 position: relative;
                 border: 1px solid red;
+                box-sizing: border-box;
                 margin-left: auto;
                 margin-right: auto;
-                overflow-x:scroll;
+                overflow: hidden;
             }
             ul{
-                display: block;
                 margin: 0px;
                 padding: 0px;
-                
-                background-color: blue;
+                width: 2400px;
+                position: absolute;
+                left: 0px;
+                box-sizing: border-box;
             }
             li{
                 margin: 0px;
                 padding: 0px;
-                width: 100%;
+                width: 800px;
                 height: 100%;
                 float: left;
                 list-style-type: none;
+                box-sizing: border-box;
             }
+/*            #b1{
+                margin-left: auto;
+                margin-right: auto;
+                width: 500px;
+                height: 500px;
+                background-color: red;
+                position: relative;
+            }
+            #b2{
+                width: 100px;
+                height: 100px;
+                position: relative;
+                background-color: black;
+            }*/
 
         </style>
     </head>
     <body>
 
+<!--        <div id="b1">
+            <ul id="b2"></ul>
+        </div>-->
 
         <div class="slider">
             <ul>
@@ -67,23 +87,32 @@ and open the template in the editor.
                  
                 // using method each
                 return this.each(function() {
+                     console.log(jQuery("ul").position().left); // issue border so width more than 800px
                     var self = this;
+                    _move;
                     var _init = (function(){
+                        console.log("test1");
+                      
                         
-                        console.log("test 1");
-                       
-                        
-                    })();
+                    }());
                     
                     
                     var _move = (function(){
-                        var position_main;
-                        var position;
-                         console.log("test");
-                        console.log(settings.width)
+                        console.log("test2");
+                       
+                        //jQuery("ul").animate({left: '-800px'},
+//                        {
+//                              complete:function(){
+//                                  //console.log(jQuery("ul")..css('left'));
+//                                  console.log(jQuery("ul").offset().left);
+//                              }
+//                        });
+                        
+                        
                        
                         
-                    });
+                    }());
+                    
 //                    var retinaMacbook = (function() {
 // 
 //                        //Private variables
