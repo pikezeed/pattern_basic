@@ -15,8 +15,8 @@ and open the template in the editor.
                 width: 800px;
                 height: 400px;
                 position: relative;
-                border: 1px solid red;
-                box-sizing: border-box;
+/*                border: 1px solid red;
+                box-sizing: border-box;*/
                 margin-left: auto;
                 margin-right: auto;
                 overflow: hidden;
@@ -27,7 +27,8 @@ and open the template in the editor.
                 width: 2400px;
                 position: absolute;
                 left: 0px;
-                box-sizing: border-box;
+                overflow: hidden;
+/*                box-sizing: border-box;*/
             }
             li{
                 margin: 0px;
@@ -36,7 +37,8 @@ and open the template in the editor.
                 height: 100%;
                 float: left;
                 list-style-type: none;
-                box-sizing: border-box;
+                
+/*                box-sizing: border-box;*/
             }
 /*            #b1{
                 margin-left: auto;
@@ -75,7 +77,7 @@ and open the template in the editor.
             jQuery.fn.slider = function( options ){
                 
                 var defaults = {
-                  width:100 
+                  width:null
                 };
                 
                 
@@ -87,18 +89,94 @@ and open the template in the editor.
                  
                 // using method each
                 return this.each(function() {
-                     console.log(jQuery("ul").position().left); // issue border so width more than 800px
-                    var self = this;
-                    _move;
-                    var _init = (function(){
-                        console.log("test1");
-                      
+
+
+//                    var slider_module = (function(){
+//                        var self = this;
+//                        
+//                        console.log(self);
+//                        
+//                        myPrivateMethod = function() {
+//                            console.log(this);
+//                        };
+// 
+//                        myPrivateMethod();
+//                        
+//                    })();
+
+                    var slider_module = {
                         
-                    }());
+                        myProperty: "some value",
+                        self : this,
+                        
+                        myConfig: {
+                            useCaching : true
+                        },
+                        
+                        _init : function(){
+                            console.log(jQuery("ul").position().left);    
+                            this._move();
+                        },
+                        
+                        _move : function(){
+                            console.log(settings.width);
+                            jQuery("ul").animate({left: '-800px'},
+                            {
+                                  complete:function(){
+                                      //console.log(jQuery("ul")..css('left'));
+                                      console.log(jQuery("ul").position().left);
+                                  }
+                            });
+                           
+                        }
+                        
+            
+                    };
                     
                     
-                    var _move = (function(){
-                        console.log("test2");
+                    slider_module._init();
+                    
+
+                    });
+
+                
+                return this;
+                
+                
+            }
+        }(jQuery));
+    </script>
+    <script>
+        $(document).ready( function() {
+              jQuery('.slider').slider({
+                  width:800
+              });   
+        });
+        
+    </script>
+</html>
+<script>
+                     
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                     //console.log(jQuery("ul").position().left); // issue border so width more than 800px
+//                    var self = this;
+//                    _move;
+//                    var _init = (function(){
+//                       // console.log("test1");
+//                      
+//                        
+//                    }());
+//                    
+//                    
+//                    var _move = (function(){
+                        //console.log("test2");
                        
                         //jQuery("ul").animate({left: '-800px'},
 //                        {
@@ -110,8 +188,8 @@ and open the template in the editor.
                         
                         
                        
-                        
-                    }());
+//                        
+//                    }());
                     
 //                    var retinaMacbook = (function() {
 // 
@@ -147,20 +225,6 @@ and open the template in the editor.
 
 
                     
-                });
-                
-                return this;
-                
-                
-            }
-        }(jQuery));
-    </script>
-    <script>
-        $(document).ready( function() {
-              jQuery('.slider').slider({
-                  width:800
-              });   
-        });
-        
-    </script>
-</html>
+//                });  
+</script>
+ 
