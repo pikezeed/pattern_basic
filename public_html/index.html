@@ -12,13 +12,16 @@ and open the template in the editor.
         <style>
      
             .slider{
+/*                margin: 0px;
+                padding: 0px;*/
                 width: 800px;
                 height: 400px;
                 position: relative;
+                left: 0px;
 /*                border: 1px solid red;
                 box-sizing: border-box;*/
-                margin-left: auto;
-                margin-right: auto;
+/*                margin-left: auto;
+                margin-right: auto;*/
                 overflow: hidden;
             }
             ul{
@@ -35,7 +38,8 @@ and open the template in the editor.
                 padding: 0px;
                 width: 800px;
                 height: 100%;
-                float: left;
+               
+                display: inline-block;
                 list-style-type: none;
                 
 /*                box-sizing: border-box;*/
@@ -120,7 +124,8 @@ and open the template in the editor.
                         
                         _move : function(){
                             console.log(settings.width);
-                            jQuery("ul").animate({left: '-800px'},
+                            console.log(jQuery("ul li").length);
+                            jQuery("ul").animate({left : '-=800'}, // not right
                             {
                                   complete:function(){
                                       //console.log(jQuery("ul")..css('left'));
