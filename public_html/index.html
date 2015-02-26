@@ -101,7 +101,7 @@ and open the template in the editor.
                             var defaultCount = 1;
                             var count = 1;
                             var start = function(){
-                               console.log(config.width+ " : start width");
+   
                                jQuery(config.className_self+' ul')
                                    .animate(
                                        {
@@ -110,9 +110,8 @@ and open the template in the editor.
                                        {
                                            duration : 2000,
                                            complete:function(){
-                                               console.log(count++);
-                                               console.log(config.amountPic+ " : amount");
-                                               console.log(config.width+ " : width");
+                                               count++;
+           
                                                if(count === config.amountPic){
                                                    
                                                    count = defaultCount;
@@ -139,6 +138,24 @@ and open the template in the editor.
 
                         }
                         
+                        function _move2(){
+                            var defaultCount = 1;
+                            var count = 1;
+                            var start = function(){
+                                jQuery(config.className_self+' ul')
+                                        .delay(1000)   // set delay move
+                                        .animate({
+                                            left : '-='+config.width+''
+                                        },
+                                        {
+                                            complete: function(){
+                                                start();
+                                            }
+                                        });
+                            };    
+                            start();
+                        }
+                        
                         function clearTimeout(){
                             
                             
@@ -148,7 +165,7 @@ and open the template in the editor.
                             
                             run:function(){
                                 _setAmountPic();
-                                _move();
+                                _move2();
                             }
                             
                         };
@@ -156,6 +173,9 @@ and open the template in the editor.
                         
                         
                     })();
+                    
+
+                    
                     
 // ##### running ##### //
 
