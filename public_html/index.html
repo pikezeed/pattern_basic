@@ -18,10 +18,10 @@ and open the template in the editor.
                 height: 400px;
                 position: relative;
                 left: 0px;
-/*                border: 1px solid red;
-                box-sizing: border-box;*/
-/*                margin-left: auto;
-                margin-right: auto;*/
+/*                border: 1px solid red;*/
+                box-sizing: border-box;
+                margin-left: auto;
+                margin-right: auto;
                 overflow: hidden;
             }
             ul{
@@ -30,71 +30,159 @@ and open the template in the editor.
                 width: 2400px;
                 position: absolute;
                 left: 0px;
+/*                border: 1px solid red;*/
                 overflow: hidden;
-/*                box-sizing: border-box;*/
+       
+                box-sizing: border-box;
             }
             li{
                 margin: 0px;
                 padding: 0px;
                 width: 800px;
                 height: 100%;
-               
-                display: inline-block;
+                box-sizing: border-box;
+                float: left;
                 list-style-type: none;
-                
-/*                box-sizing: border-box;*/
+
             }
-/*            #b1{
-                margin-left: auto;
-                margin-right: auto;
-                width: 500px;
-                height: 500px;
-                background-color: red;
-                position: relative;
-            }
-            #b2{
-                width: 100px;
-                height: 100px;
-                position: relative;
-                background-color: black;
-            }*/
+
 
         </style>
     </head>
     <body>
 
-<!--        <div id="b1">
-            <ul id="b2"></ul>
-        </div>-->
+
 
         <div class="slider">
             <ul>
+                <li ><img src="img/img3.jpg" alt="3" width="800" height="400" ></li>
                 <li ><img src="img/img1.jpg" alt="1" width="800" height="400" ></li>
                 <li ><img src="img/img2.jpg" alt="2" width="800" height="400" ></li>
-                <li ><img src="img/img3.jpg" alt="3" width="800" height="400" ></li>
+                
             </ul>
         </div>
     </body>
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
     <script>
+
         ;(function(jQuery){
+            
             jQuery.fn.slider = function( options ){
-                
+               
                 var defaults = {
                   width:null
                 };
-                
-                
-                var settings = jQuery.extend({}, defaults, options);
-                
-
-                
-                
-                 
-                // using method each
+              
+              var settings = jQuery.extend({}, defaults, options);
+              
                 return this.each(function() {
+                    
+// ##### inside fn slider ##### //
+                    var jQuery_self = this;
+                    var className_self = "."+$(this).attr('class');
+                    
+                    
+// ##### inside working window ##### //
+                    var _init = (function(){
+                        
+                        var config = ({
+                            windows     : this,
+                            width       : settings.width,
+                            amountPic  : null,
+                            className_self : null || className_self             // get parent is class name
+                        });
 
+                        
+                        function _setAmountPic(){
+                            config.amountPic =  jQuery('ul li').length;
+                        }
+                        
+                        function _move(){
+                            var defaultCount = 1;
+                            var count = 1;
+                            var start = function(){
+                               console.log(config.width+ " : start width");
+                               jQuery(config.className_self+' ul')
+                                   .animate(
+                                       {
+                                           left : '-='+config.width+''
+                                       },
+                                       {
+                                           duration : 2000,
+                                           complete:function(){
+                                               console.log(count++);
+                                               console.log(config.amountPic+ " : amount");
+                                               console.log(config.width+ " : width");
+                                               if(count === config.amountPic){
+                                                   
+                                                   count = defaultCount;
+                                                   setTimeout(function(){
+                                                        jQuery(config.className_self+' ul').animate({ 
+                                                             left : '0'
+                                                        },{ 
+                                                            duration : 2000,
+                                                            complete:function(){
+                                                                 setTimeout(function(){ start(); },5000); 
+                                                            }
+                                                        });                                                      
+                                                   },5000);
+                                                   
 
+                                               }else{
+                                                    setTimeout(function(){ start(); },5000);
+                                               }
+                                           }
+                                       }
+                               );                               
+                            };
+                            setTimeout(function(){ start(); },5000);
+
+                        }
+                        
+                        function clearTimeout(){
+                            
+                            
+                        }
+                        
+                        return {
+                            
+                            run:function(){
+                                _setAmountPic();
+                                _move();
+                            }
+                            
+                        };
+                        
+                        
+                        
+                    })();
+                    
+// ##### running ##### //
+
+                    _init.run();
+                    
+                    
+                    
+//                
+//    
+                });
+//
+//
+            };
+            
+        })(jQuery);
+    </script>
+    <script>
+        $(document).ready( function() {
+              jQuery('.slider').slider({
+                  width:800
+              });   
+             
+        });
+        
+    </script>
+</html>
+<script>
 //                    var slider_module = (function(){
 //                        var self = this;
 //                        
@@ -108,60 +196,49 @@ and open the template in the editor.
 //                        
 //                    })();
 
-                    var slider_module = {
-                        
-                        myProperty: "some value",
-                        self : this,
-                        
-                        myConfig: {
-                            useCaching : true
-                        },
-                        
-                        _init : function(){
-                            console.log(jQuery("ul").position().left);    
-                            this._move();
-                        },
-                        
-                        _move : function(){
-                            console.log(settings.width);
-                            console.log(jQuery("ul li").length);
-                            jQuery("ul").animate({left : '-=800'}, // not right
-                            {
-                                  complete:function(){
-                                      //console.log(jQuery("ul")..css('left'));
-                                      console.log(jQuery("ul").position().left);
-                                  }
-                            });
-                           
-                        }
-                        
-            
-                    };
-                    
-                    
-                    slider_module._init();
-                    
+//                    var slider_module = {
+//                        
+//                        myProperty: "some value",
+//                        self : this,
+//                        
+//                        myConfig: {
+//                            useCaching : true
+//                        },
+//                        
+//                        _init : function(){
+//                            console.log(jQuery("ul").position().left);    
+//                            this._move();
+//                        },
+//                        
+//                        _move : function(){
+//                            console.log(settings.width);
+//                            console.log(jQuery("ul li").length);
+//                            jQuery("ul").animate({left : '-=800'}, // not right
+//                            {
+//                                  complete:function(){
+//                                      //console.log(jQuery("ul")..css('left'));
+//                                      console.log(jQuery("ul").position().left);
+//                                  }
+//                            });
+//                           
+//                        }
+//                        
+//            
+//                    };
+//                    
+//                    
+//                    slider_module._init();
+//                    
+//
+//                    });
 
-                    });
+//                
+//                
+//                
+//                
+//            }
 
-                
-                return this;
-                
-                
-            }
-        }(jQuery));
-    </script>
-    <script>
-        $(document).ready( function() {
-              jQuery('.slider').slider({
-                  width:800
-              });   
-        });
-        
-    </script>
-</html>
-<script>
-                     
+// ############################################################################################ //
                     
                     
                     
