@@ -141,6 +141,8 @@ and open the template in the editor.
                         function _move2(){
                             var defaultCount = 1;
                             var count = 1;
+                            
+                            // begin slide
                             var start = function(){
                                 jQuery(config.className_self+' ul')
                                         .delay(1000)   // set delay move
@@ -152,9 +154,21 @@ and open the template in the editor.
                                                 start();
                                             }
                                         });
-                            };    
+                            };
+                            
+                            // previos first of all
+                            var firstOfall = function(){
+                                jQuery(config.className_self+' ul')
+                                        .delay(1000)
+                                        .animate({
+                                            left : '0'
+                                        });
+                                
+                            };
                             start();
                         }
+                        
+                        
                         
                         function clearTimeout(){
                             
